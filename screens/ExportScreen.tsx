@@ -63,7 +63,7 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
 
     return (
       <SafeAreaView>
-        <ScrollView>
+        <ScrollView style={{ padding: 10 }}>
           <Title text="Looking Back" />
           <LogContext.Consumer>
             {context => {
@@ -76,7 +76,7 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
 
               return <Calendar
                 style={{
-                  margin: 15, borderRadius: 10,
+                  marginVertical: 10, borderRadius: 10,
                 }}
                 // Initially visible month. Default = Date()
                 current={'2020-02-01'}
@@ -88,7 +88,7 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
             }}
           </LogContext.Consumer>
           <Title text="Common Triggers" />
-          <View style={{ backgroundColor: 'white', margin: 10, borderRadius: 10 }}>
+          <View style={{ backgroundColor: 'white', marginVertical: 10, borderRadius: 10 }}>
 
             <LogContext.Consumer>
               {context => {
