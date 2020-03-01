@@ -28,6 +28,10 @@ async function loadLogs(): Promise<Log[]> {
   try {
     const result = JSON.parse(await AsyncStorage.getItem(PersistantStorageLogsKey));
 
+    if (!result) {
+      return [];
+    }
+
     return result.map(log => {
       return { health: log.health, questions: log.questions, time: new Date(log.time) };
     });

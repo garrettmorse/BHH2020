@@ -11,18 +11,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue',
         padding: 50,
         width: "90%",
-        marginTop: 50,
-        marginBottom: 50,
+        margin: 15,
         borderRadius: 100,
         shadowRadius: 1,
         shadowColor: "black",
-        shadowOffset: { width: -2, height: 2 },
-        shadowOpacity: 1
+        shadowOffset: { width: -1, height: 2 },
+        shadowOpacity: 0.5,
+
     },
     text: {
         fontSize: 25,
-        color: "darkblue"
+        color: "#030d59"
     }
-})
+});
 
 export default styles;
