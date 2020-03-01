@@ -10,7 +10,7 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 function DemoNotificationButton({ }) {
   async function scheduleNotification() {
-    const notification = { title: 'are you OKAY!', body: 'We noticed that your physiological conditions are spiking. Can we help?' };
+    const notification = { title: 'Are You Okay?', body: 'We noticed that your physiological conditions are spiking. Can we help?' };
 
     const scheduling = {
       time: (new Date()).getTime() + 1000 * 5
@@ -33,14 +33,15 @@ function DemoNotificationButton({ }) {
   }
 
   return (
-    <TouchableOpacity style={styles.button} onPress={scheduleNotification}>
-      <Text style={[styles.text, { textAlign: 'center', }]}>
-        Send a Warning Notification
+    <View style={{ alignItems: 'center' }}>
+      <TouchableOpacity style={styles.button} onPress={scheduleNotification}>
+        <Text style={[styles.text, { alignItems: 'center', textAlign: 'center', }]}>
+          Send a Warning Notification
       </Text>
-    </TouchableOpacity>
+      </TouchableOpacity >
+    </View>
   );
 };
-
 
 export default class ExportScreen extends Component<{ navigation, screenProps; }, {}> {
   constructor(props) {

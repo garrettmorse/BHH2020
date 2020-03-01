@@ -1,8 +1,6 @@
 import React from "react";
 import { Text, View, ScrollView, TouchableOpacity, TextInput } from "react-native";
-import Slider from "react-native-slider";
 import styles from "../util/styles";
-import buttonGrid from "../components/buttonGrid";
 import { LogContext, Log, Question } from '../context/Log';
 import partialLog from '../util/partialLog';
 

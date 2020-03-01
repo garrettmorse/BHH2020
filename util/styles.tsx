@@ -8,10 +8,12 @@ const styles = StyleSheet.create({
         padding: 10
     },
     button: {
+        flex: 1,
+        justifyContent: 'center',
         alignItems: "center",
         backgroundColor: "skyblue",
         padding: 50,
-        width: "100%",
+        width: "80%",
         marginTop: 50,
         marginBottom: 50,
         borderRadius: 100,
@@ -50,7 +52,6 @@ const styles = StyleSheet.create({
         width: "100%",
         borderColor: "darkgray",
         borderWidth: 1
-
     },
     slider: {
         width: "80%"

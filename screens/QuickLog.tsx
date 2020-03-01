@@ -1,9 +1,8 @@
 import React from "react";
-import { Text, View, ScrollView, Alert } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity } from "react-native";
 import Slider from "react-native-slider";
 import styles from "../util/styles";
 import { Log, LogContext, Question, HealthData } from '../context/Log';
-import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import ButtonGrid from "../components/ButtonGrid";
 import partialLog from '../util/partialLog';
 
@@ -106,9 +105,10 @@ class QuickLog extends React.Component<{ navigation; }, { severity: number; symp
           <View style={styles.questionContainer}>
             <LogContext.Consumer>
               {context =>
-                <TouchableOpacity style={styles.submitButton} onPress={() => {
+                <TouchableOpacity style={styles.button} onPress={() => {
                   context.saveLog(this.makeLog());
                   this.props.navigation.navigate('Log Event');
+                  alert("Success!");
                 }}>
                   <Text style={styles.text}>Submit</Text>
                 </TouchableOpacity>

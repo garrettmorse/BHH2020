@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, Share } from 'react-native';
+import { View, Text, TouchableOpacity, Share } from 'react-native';
 import { Log } from '../context/Log';
 import styles from '../util/styles';
 import * as FileSystem from 'expo-file-system';
@@ -47,32 +47,34 @@ function logToFileContents(logs: Log[], filetype: ExportType): string {
 
 export function ExportCard({ filetype, logs }) {
   return (
-    <TouchableOpacity
-      style={styles.button}
-      key={filetype.displayName}
-      onPress={async () => {
-        try {
-          // write file
-          const contents = logToFileContents(logs, filetype);
-          const uri = FileSystem.cacheDirectory + `data.${filetype.extension}`;
+    <View style={{ alignItems: "center", justifyContent: "center" }}>
+      <TouchableOpacity
+        style={styles.button}
+        key={filetype.displayName}
+        onPress={async () => {
+          try {
+            // write file
+            const contents = logToFileContents(logs, filetype);
+            const uri = FileSystem.cacheDirectory + `data.${filetype.extension}`;
 
-          console.log(uri);
-          console.log(contents);
+            console.log(uri);
+            console.log(contents);
 
-          await FileSystem.writeAsStringAsync(uri, contents);
+            await FileSystem.writeAsStringAsync(uri, contents);
 
-          const result = await Share.share({
-            title: 'Export',
-            message: 'Export your data.',
-            url: uri
-          }, { tintColor: 'green' });
+            const result = await Share.share({
+              title: 'Export',
+              message: 'Export your data.',
+              url: uri
+            }, { tintColor: 'green' });
 
-        } catch (error) {
-          console.log("Error in ExportCard:", error);
-        }
-      }}
-    >
-      <Text style={styles.text}>{filetype.displayName} (.{filetype.extension})</Text>
-    </TouchableOpacity>
+          } catch (error) {
+            console.log("Error in ExportCard:", error);
+          }
+        }}
+      >
+        <Text style={styles.text}>{filetype.displayName} (.{filetype.extension})</Text>
+      </TouchableOpacity>
+    </View>
   );
 }

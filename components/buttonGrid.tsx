@@ -2,14 +2,9 @@ import React from "react";
 import {
   Text,
   View,
-  StyleSheet,
-  ScrollView,
-  Slider,
-  Alert,
   TouchableHighlight
 } from "react-native";
 import styles from "../util/styles";
-import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 
 const ButtonGrid = ({ labels, toggleValue, selected }) => {
   return (
