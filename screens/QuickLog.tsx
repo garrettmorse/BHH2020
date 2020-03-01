@@ -1,21 +1,17 @@
 import React from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Slider,
-  Alert
-} from "react-native";
+import { Text, View, StyleSheet, ScrollView, Alert } from "react-native";
+import Slider from "react-native-slider";
 import styles from "../util/styles";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import buttonGrid from "../component/buttonGrid";
 
-class QuickLog extends React.Component<{}, { value: Number }> {
+class QuickLog extends React.Component<{}, { value: number }> {
+  sliderTimeoutId: NodeJS.Timeout;
   constructor(props) {
     super(props);
-    this.state = { value: 5 };
+    this.state = { value: 1 };
   }
+
   render() {
     return (
       <ScrollView>
