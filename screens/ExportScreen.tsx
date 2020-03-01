@@ -33,12 +33,7 @@ function DemoNotificationButton({ }) {
   }
 
   return (
-    <TouchableOpacity style={styles.button} onPress={scheduleNotification}>
-      <Text style={[styles.text, { textAlign: 'center', }]}>
-        Send a Warning Notification
-      </Text>
-    </TouchableOpacity>
-  );
+    <Button title="Send a Warning Notification" onPress={scheduleNotification} />);
 };
 
 
@@ -50,23 +45,20 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
   }
 
   formatDateString(date: Date): string {
-    console.log(moment(date).format('YYYY-MM-DD'));
     return moment(date).format('YYYY-MM-DD');
   }
 
   formatSelectColor(log: Log): string { // valid CSS color string
-    console.log(log.questions);
     const severityQuestions = log.questions.filter(q => q.question == 'Severity of the attack');
-    console.log(severityQuestions);
 
-    let singleValue = severityQuestions.length > 0 ? parseFloat(severityQuestions[0].response) : 0.5;
+    let singleValue = severityQuestions.length > 0 ? parseFloat(severityQuestions[0].response) / 5 + Math.random() * 0.1 : Math.random();
 
     if (isNaN(singleValue)) {
-      singleValue = 0.5;
+      singleValue = Math.random();
     }
 
-    const h = (1.0 - singleValue) * 240;
-    return "hsl(" + h + ", 40%, 50%)";
+    const h = (1.0 - singleValue) * 120;
+    return "hsl(" + h + ", 70%, 50%)";
   }
 
   render() {
@@ -74,6 +66,7 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
     return (
       <SafeAreaView>
         <ScrollView>
+          <Text style={{ marginTop: 25, marginLeft: 15, fontSize: 26, fontWeight: 'bold' }}>Looking Back</Text>
           <LogContext.Consumer>
             {context => {
 
@@ -98,6 +91,7 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
               />;
             }}
           </LogContext.Consumer>
+          <Text style={{ marginLeft: 15, fontSize: 26, fontWeight: 'bold' }}>Export</Text>
           <LogContext.Consumer>
             {context =>
               SupportedExportTypes.map(exportType => ExportCard({
@@ -105,18 +99,25 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
               }))
             }
           </LogContext.Consumer>
-          <LogContext.Consumer>
+          {/* <LogContext.Consumer>
             {context => context.logs.map((log, i) =>
               <View key={i}>
                 <Text>{log.time.toDateString()}</Text>
               </View>)}
+          </LogContext.Consumer> */}
+
+          <Text style={{ marginTop: 25, marginLeft: 15, fontSize: 26, fontWeight: 'bold' }}>Demo Parts</Text>
+          <DemoNotificationButton />
+          <LogContext.Consumer>
+            {context => <Button onPress={context.resetLogs} title="Reset To Default" />}
+
           </LogContext.Consumer>
           <LogContext.Consumer>
             {context =>
               <Button onPress={() => context.saveLog({ time: new Date(), health: { heartRate: 123.4, hoursSleep: 5.6 }, questions: [] })} title="Save Log" />
             }
           </LogContext.Consumer>
-          <DemoNotificationButton />
+          <View style={{ height: 40 }} />
         </ScrollView>
       </SafeAreaView>
     );

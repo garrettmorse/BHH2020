@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LogStackScreen from './LogNavigator';
@@ -16,19 +17,39 @@ export default function Root() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          tabBarIcon: ({ focused, }) => {
             if (route.name === "Log") {
-              return <Ionicons name="ios-add" size={25} color={"black"} />;
+              return <Ionicons name="ios-add" size={25} color={focused ? "darkblue" : "gray"} />;
             } else if (route.name === "Export") {
-              return <MaterialCommunityIcons name="export" size={25} color={"gray"} />;
+              return <Ionicons name="ios-cloud-download" size={25} color={focused ? "darkblue" : "gray"} />;
             } else {
-              return <Ionicons name="ios-alert" size={30} color={"red"} />;
+              return <View style={{
+                height: 80,
+                width: 80,
+                borderRadius: 100,
+                backgroundColor: focused ? 'darkblue' : '#666699',
+                paddingTop: 15,
+                alignItems: 'center'
+              }}>
+                <Ionicons name="ios-alert" size={40} color={"white"} />
+              </View>;
             }
           },
+          tabBarLabel: ({ focused }) => {
+            if (route.name === "Panic") {
+              return <Text style={{ color: "white", fontSize: 13 }}>{route.name}</Text>;
+            }
+
+            return <Text style={{ color: focused ? "darkblue" : "gray", fontSize: 13 }}>{route.name}</Text>;
+          }
         })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
+        }}
       >
         <Tab.Screen name="Log" component={LogStackScreen} />
-        <Tab.Screen name="Emergency" component={CallStackScreen} />
+        <Tab.Screen name="Panic" component={CallStackScreen} />
         <Tab.Screen name="Export" component={ExportStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>

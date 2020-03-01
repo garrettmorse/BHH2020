@@ -1,0 +1,147 @@
+{
+  "defaultLogs": [
+    {
+      "time": "2020-01-06T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "5"
+        }
+      ]
+    },
+    {
+      "time": "2020-01-08T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "5"
+        }
+      ]
+    },
+    {
+      "time": "2020-02-06T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "5"
+        }
+      ]
+    },
+    {
+      "time": "2020-02-11T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "5"
+        }
+      ]
+    },
+    {
+      "time": "2020-02-14T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "3"
+        }
+      ]
+    },
+    {
+      "time": "2020-02-17T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "4"
+        }
+      ]
+    },
+    {
+      "time": "2020-02-19T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "3"
+        }
+      ]
+    },
+    {
+      "time": "2020-02-21T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "2"
+        }
+      ]
+    },
+    {
+      "time": "2020-02-20T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "2"
+        }
+      ]
+    },
+    {
+      "time": "2020-02-22T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "1"
+        }
+      ]
+    },
+    {
+      "time": "2020-02-25T10:20:30Z",
+      "health": {
+        "heartRate": 145,
+        "hoursSleep": 4.5
+      },
+      "questions": [
+        {
+          "question": "Severity of the attack",
+          "response": "1"
+        }
+      ]
+    }
+  ]
+}
