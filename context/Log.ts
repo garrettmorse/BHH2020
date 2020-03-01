@@ -2,13 +2,13 @@ import React from 'react';
 import { AsyncStorage } from 'react-native';
 
 interface HealthData {
-  heartRate: Number;
-  hoursSleep: Number;
+  heartRate: number;
+  hoursSleep: number;
 }
 
 interface Question {
-  question: String;
-  response: String;
+  question: string;
+  response: string;
 }
 
 interface Log {
