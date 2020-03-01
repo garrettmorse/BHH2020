@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: "center",
-        backgroundColor: "skyblue",
+        backgroundColor: "#6c63ff",
         padding: 50,
         width: "80%",
         marginTop: 50,
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         alignItems: "center",
-        backgroundColor: "skyblue",
+        backgroundColor: "#6c63ff",
         padding: 50,
         width: "100%",
         marginTop: 50,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 25,
-        color: "#292929",
+        color: "whitesmoke",
         textAlign: "center"
     },
     textbox: {
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     squareButton: {
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "skyblue",
+        backgroundColor: "#6c63ff",
         padding: 10,
         width: 115,
         height: 115,
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 10,
         marginBottom: 10
+
     }
 });
 
