@@ -4,27 +4,52 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    padding: 10
   },
   button: {
     alignItems: "center",
     backgroundColor: "skyblue",
     padding: 50,
-    width: "90%",
+    width: "100%",
     marginTop: 50,
     marginBottom: 50,
     borderRadius: 100,
-    shadowRadius: 1,
-    shadowColor: "black",
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: 1
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    shadowOffset: { height: 1, width: 1 }
   },
   text: {
     fontSize: 25,
-    color: "darkblue"
+    color: "darkblue",
+    textAlign: "center"
   },
   slider: {
     width: "80%"
+  },
+  squareButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "skyblue",
+    padding: 10,
+    width: 115,
+    height: 115,
+    marginTop: 10,
+    marginRight: 5,
+    marginLeft: 5,
+    marginBottom: 10,
+    borderRadius: 20,
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    shadowOffset: { height: 1, width: 1 }
+  },
+  grid: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    width: "100%"
   }
 });
 
