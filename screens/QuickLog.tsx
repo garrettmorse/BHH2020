@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, ScrollView, Alert } from "react-native";
+import { Text, View, ScrollView, Alert } from "react-native";
 import Slider from "react-native-slider";
 import styles from "../util/styles";
 import { Log, LogContext, Question, HealthData } from '../context/Log';
@@ -106,7 +106,7 @@ class QuickLog extends React.Component<{ navigation; }, { severity: number; symp
           <View style={styles.questionContainer}>
             <LogContext.Consumer>
               {context =>
-                <TouchableOpacity style={styles.button} onPress={() => {
+                <TouchableOpacity style={styles.submitButton} onPress={() => {
                   context.saveLog(this.makeLog());
                   this.props.navigation.navigate('Log Event');
                 }}>
