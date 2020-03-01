@@ -1,32 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, SafeAreaView, ScrollView, Button, TouchableOpacity, Share } from 'react-native';
-import { LogContext } from '../context/Log';
+import { LogContext, Log } from '../context/Log';
 import style from '../util/styles';
 import { Notifications, } from 'expo';
 import * as Permissions from 'expo-permissions';
+import { ExportCard, SupportedExportTypes } from '../components/ExportCard';
 
-function ExportCard({ displayName, extension }) {
-  return (
-    <TouchableOpacity
-      style={style.button}
-      key={displayName}
-      onPress={async () => {
-        try {
-          const result = await Share.share({
-            title: 'Export',
-            url: `https://samuelstevens.me`
-          }, { tintColor: 'green' });
-
-          console.log(result);
-        } catch (error) {
-          console.log("Error in ExportCard:", error);
-        }
-      }}
-    >
-      <Text style={style.text}>{displayName} (.{extension})</Text>
-    </TouchableOpacity>
-  );
-}
 
 function DemoNotificationButton({ }) {
   async function scheduleNotification() {
@@ -59,19 +38,8 @@ function DemoNotificationButton({ }) {
       </Text>
     </TouchableOpacity>
   );
-}
+};
 
-interface ExportType {
-  extension: string,
-  displayName: string,
-}
-
-const SupportedExportTypes: ExportType[] = [
-  { extension: 'xlsx', displayName: 'Excel' },
-  { extension: 'csv', displayName: 'CSV' },
-  { extension: 'json', displayName: 'JSON' },
-  { extension: 'txt', displayName: 'Text' }
-];
 
 export default class ExportScreen extends Component<{ navigation, screenProps; }, {}> {
   constructor(props) {
@@ -84,11 +52,11 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
     return (
       <SafeAreaView>
         <ScrollView>
-
-          {SupportedExportTypes.map(exportType => ExportCard({ displayName: exportType.displayName, extension: exportType.extension }))}
           <LogContext.Consumer>
             {context =>
-              <Button onPress={() => context.saveLog({ time: new Date(), health: { heartRate: 123.4, hoursSleep: 5.6 }, questions: [] })} title="Save Log" />
+              SupportedExportTypes.map(exportType => ExportCard({
+                filetype: exportType, logs: context.logs
+              }))
             }
           </LogContext.Consumer>
           <LogContext.Consumer>
@@ -96,6 +64,11 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
               <View key={i}>
                 <Text>{log.time.toDateString()}</Text>
               </View>)}
+          </LogContext.Consumer>
+          <LogContext.Consumer>
+            {context =>
+              <Button onPress={() => context.saveLog({ time: new Date(), health: { heartRate: 123.4, hoursSleep: 5.6 }, questions: [] })} title="Save Log" />
+            }
           </LogContext.Consumer>
           <DemoNotificationButton />
         </ScrollView>
