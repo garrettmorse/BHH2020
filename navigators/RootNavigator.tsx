@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SettingsScreen from '../screens/SettingsScreen';
-import DocumentScreen from '../screens/DocumentScreen';
+import LogStackScreen from './LogNavigator';
+import ExportScreen from '../screens/ExportScreen';
 
 
 
@@ -12,8 +12,8 @@ export default function Root() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Log" component={DocumentScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Log" component={LogStackScreen} />
+        <Tab.Screen name="Export" component={ExportScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

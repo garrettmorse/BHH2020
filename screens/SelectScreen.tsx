@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const DocumentScreen = () => {
+const SelectScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
       <Text>Home! </Text>
@@ -9,4 +9,4 @@ const DocumentScreen = () => {
   );
 };
 
-export default DocumentScreen;
+export default SelectScreen;
