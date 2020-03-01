@@ -6,8 +6,7 @@ import LogStackScreen from './LogNavigator';
 import ExportStackScreen from './ExportNavigator';
 import CallStackScreen from './EmergencyNavigator';
 import { Ionicons } from '@expo/vector-icons';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Colors } from '../util/styles';
 
 
 const Tab = createBottomTabNavigator();
@@ -27,9 +26,12 @@ export default function Root() {
                 height: 80,
                 width: 80,
                 borderRadius: 100,
-                backgroundColor: focused ? 'darkblue' : '#666699',
+                backgroundColor: focused ? Colors.selectedPrimary : Colors.primary,
                 paddingTop: 15,
-                alignItems: 'center'
+                alignItems: 'center',
+                shadowOpacity: 0.4,
+                shadowRadius: 2,
+                shadowOffset: { height: 1, width: 1 }
               }}>
                 <Ionicons name="ios-alert" size={40} color={"white"} />
               </View>;

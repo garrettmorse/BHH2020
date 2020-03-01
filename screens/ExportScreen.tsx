@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, ScrollView, Button } from 'react-native';
+import { Text, View, SafeAreaView, ScrollView, Button, Image } from 'react-native';
 import { LogContext, Log } from '../context/Log';
 import Title from '../components/Title';
 import styles from '../util/styles';
@@ -67,7 +67,6 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
           <Title text="Looking Back" />
           <LogContext.Consumer>
             {context => {
-
               const markedDates = {};
 
               context.logs.forEach(log => {
@@ -79,7 +78,7 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
                   marginVertical: 10, borderRadius: 10,
                 }}
                 // Initially visible month. Default = Date()
-                current={'2020-02-01'}
+                current={'2020-02-02'}
                 maxDate={Date()}
                 // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
                 monthFormat={'MM/yyyy'}
@@ -106,11 +105,13 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
                   });
                 });
 
-
+                console.log(Object.keys(causes).map(key => {
+                  return [key, causes[key]];
+                }).filter(pair => pair[0] !== "").sort((a, b) => b[1] - a[1]).slice(0, 3));
 
                 return Object.keys(causes).map(key => {
                   return [key, causes[key]];
-                }).sort((a, b) => b[1] - a[1]).slice(0, 3).map((pair, i) =>
+                }).sort((a, b) => b[1] - a[1]).filter(pair => pair[0] !== "").slice(0, 3).map((pair, i) =>
                   <Text style={{ fontSize: 18, marginLeft: 15, marginTop: 12, }}>{i + 1}. {pair[0]}</Text>
                 );
               }}
@@ -145,6 +146,10 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
             }
           </LogContext.Consumer>
           <View style={{ height: 40 }} />
+          <Image
+            style={[{ height: "40%", width: "100%" }]}
+            source={require("../assets/images/data.png")}
+          />
         </ScrollView>
       </SafeAreaView>
     );

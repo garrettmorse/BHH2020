@@ -3,7 +3,7 @@ import { Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
 import Slider from "react-native-slider";
 import Title from '../components/Title';
 import styles from "../util/styles";
-import { Log, LogContext, Question, HealthData } from '../context/Log';
+import { Log, LogContext, Question } from '../context/Log';
 import ButtonGrid from "../components/ButtonGrid";
 import partialLog from "../util/partialLog";
 
@@ -25,7 +25,7 @@ const messages = [
 
 class QuickLog extends React.Component<
   { navigation; },
-  { severity: number; symptoms: String[]; triggers: String[]; }
+  { severity: number; symptoms: String[]; triggers: String[]; hoursSleep: number; heartRate: number; bodyTemp: number; }
   > {
   sliderTimeoutId: NodeJS.Timeout;
   constructor(props) {
@@ -33,8 +33,19 @@ class QuickLog extends React.Component<
     this.state = {
       symptoms: [],
       triggers: [],
-      severity: 1
+      severity: 1,
+      hoursSleep: 0,
+      heartRate: 0,
+      bodyTemp: 0,
     };
+  }
+
+  componentDidMount() {
+    const bodyTemp = Math.random() * 4 + 99;
+    const heartRate = Math.random() * 25 + 100;
+    const hoursSleep = Math.random() * 4 + 3;
+
+    this.setState({ bodyTemp, heartRate, hoursSleep });
   }
 
   toggleValueFromList<T>(value: T, list: T[]): T[] {
@@ -92,7 +103,7 @@ class QuickLog extends React.Component<
               step={1}
               onValueChange={severity => this.setState({ severity })}
             ></Slider>
-            <Text style={[styles.text, { fontSize: 16 }]}>{this.state.severity}{
+            <Text>{this.state.severity}{
               messages[this.state.severity - 1] ? ": " + messages[this.state.severity - 1] : null}</Text>
 
           </View>
@@ -140,24 +151,22 @@ class QuickLog extends React.Component<
           </View>
           <View style={{ backgroundColor: 'white', marginBottom: 10, borderRadius: 10, padding: 10 }}>
             <Title text="Physiological Conditions" />
-            <PhysiologicalCondition condition="Heart Rate" value={(Math.random() * 25 + 100).toLocaleString(undefined, { maximumFractionDigits: 0 })} measurement="BPM" />
-            <PhysiologicalCondition condition="Body Temp." value={(Math.random() * 4 + 99).toLocaleString(undefined, { maximumFractionDigits: 1 })} measurement="deg" />
-            <PhysiologicalCondition condition="Hours of Sleep" value={(Math.random() * 3 + 4).toLocaleString(undefined, { maximumFractionDigits: 1 })} measurement="hours" />
+            <PhysiologicalCondition condition="Heart Rate" value={this.state.heartRate.toLocaleString(undefined, { maximumFractionDigits: 0 })} measurement="BPM" />
+            <PhysiologicalCondition condition="Body Temp." value={this.state.bodyTemp.toLocaleString(undefined, { maximumFractionDigits: 1 })} measurement="deg" />
+            <PhysiologicalCondition condition="Hours of Sleep" value={this.state.hoursSleep.toLocaleString(undefined, { maximumFractionDigits: 1 })} measurement="hours" />
 
           </View>
-          <View style={styles.questionContainer}>
-            <LogContext.Consumer>
-              {context =>
-                <TouchableOpacity style={[styles.button, { marginTop: 10, marginBottom: 10 }]} onPress={() => {
-                  context.saveLog(this.makeLog());
-                  this.props.navigation.navigate('Log Event');
-                  alert("Success!");
-                }}>
-                  <Text style={styles.text}>Submit</Text>
-                </TouchableOpacity>
-              }
-            </LogContext.Consumer>
-          </View>
+          <LogContext.Consumer>
+            {context =>
+              <TouchableOpacity style={[styles.button, { marginTop: 10, marginBottom: 20, alignSelf: 'center' }]} onPress={() => {
+                context.saveLog(this.makeLog());
+                this.props.navigation.navigate('Log Event');
+                alert("Success!");
+              }}>
+                <Text style={styles.text}>Submit</Text>
+              </TouchableOpacity>
+            }
+          </LogContext.Consumer>
         </View>
         <Image
           style={[{ height: "20%", width: "100%" }]}

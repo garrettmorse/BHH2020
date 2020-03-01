@@ -7,7 +7,7 @@ const SelectScreen = ({ navigation }) => {
   return (
     <View style={[{ width: "100%", flex: 1, justifyContent: 'center' }]}>
       <StatusBar barStyle={"dark-content"} />
-      <ScrollView contentContainerStyle={{ alignItems: 'center' }} nestedScrollEnabled={false} overScrollMode={'never'} showsVerticalScrollIndicator={false} scrollEnabled={true} style={{ flex: 1, height: "100%", width: "100%" }}>
+      <ScrollView contentContainerStyle={{ alignItems: 'center' }} overScrollMode={'never'} showsVerticalScrollIndicator={false} scrollEnabled={true} style={{ flex: 1, height: "100%", width: "100%" }}>
         <TouchableOpacity
           style={[styles.button]}
           onPress={() => navigation.navigate("Quick Log")}
@@ -26,6 +26,7 @@ const SelectScreen = ({ navigation }) => {
         >
           <Text style={styles.text}> Video Update </Text>
         </TouchableOpacity>
+        {/* <View style={{ height: 50 }} /> */}
         <Image
           style={[{ height: "75%", width: "100%" }]}
           source={require("../assets/images/undraw_healthy_lifestyle_6tyl.png")}
