@@ -10,6 +10,10 @@
         {
           "question": "Severity of the attack",
           "response": "5"
+        },
+        {
+          "question": "What symptoms did you experience?",
+          "response": "Agression,Extreme Irritation"
         }
       ]
     },
@@ -23,6 +27,10 @@
         {
           "question": "Severity of the attack",
           "response": "5"
+        },
+        {
+          "question": "What symptoms did you experience?",
+          "response": "Insomnia,Extreme Irritation"
         }
       ]
     },
@@ -36,6 +44,10 @@
         {
           "question": "Severity of the attack",
           "response": "5"
+        },
+        {
+          "question": "What symptoms did you experience?",
+          "response": "Insomnia,Suicidal Thoughts"
         }
       ]
     },

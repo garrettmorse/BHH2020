@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, ScrollView, Button, TouchableOpacity, Share } from 'react-native';
+import { Text, View, SafeAreaView, ScrollView, Button } from 'react-native';
 import { LogContext, Log } from '../context/Log';
+import Title from '../components/Title';
 import styles from '../util/styles';
 import { Notifications, } from 'expo';
 import * as Permissions from 'expo-permissions';
 import moment from 'moment';
 import { ExportCard, SupportedExportTypes } from '../components/ExportCard';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import { Calendar, } from 'react-native-calendars';
 
 function DemoNotificationButton({ }) {
   async function scheduleNotification() {
-    const notification = { title: 'are you OKAY!', body: 'We noticed that your physiological conditions are spiking. Can we help?' };
+    const notification = { title: 'Are you ok?', body: 'We noticed that your physiological conditions are spiking. Can we help?' };
 
     const scheduling = {
       time: (new Date()).getTime() + 1000 * 5
@@ -28,8 +29,6 @@ function DemoNotificationButton({ }) {
     } catch (error) {
       console.log('Error in scheduleNotification():', error);
     }
-
-
   }
 
   return (
@@ -66,7 +65,7 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
     return (
       <SafeAreaView>
         <ScrollView>
-          <Text style={{ marginTop: 25, marginLeft: 15, fontSize: 26, fontWeight: 'bold' }}>Looking Back</Text>
+          <Title text="Looking Back" />
           <LogContext.Consumer>
             {context => {
 
@@ -75,8 +74,6 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
               context.logs.forEach(log => {
                 markedDates[this.formatDateString(log.time)] = { selected: true, selectedColor: this.formatSelectColor(log) };
               });
-
-              console.log(markedDates);
 
               return <Calendar
                 style={{
@@ -91,7 +88,33 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
               />;
             }}
           </LogContext.Consumer>
-          <Text style={{ marginLeft: 15, fontSize: 26, fontWeight: 'bold' }}>Export</Text>
+          <Title text="Causes" />
+          <LogContext.Consumer>
+            {context => {
+              const causes = {};
+
+              context.logs.forEach(log => {
+                log.questions.filter(q => q.question === 'What symptoms did you experience?').forEach(q => {
+                  q.response.split(',').forEach(a => {
+                    if (a in causes) {
+                      causes[a] += 1;
+                    } else {
+                      causes[a] = 1;
+                    }
+                  });
+                });
+              });
+
+
+
+              return Object.keys(causes).map(key => {
+                return [key, causes[key]];
+              }).sort((a, b) => b[1] - a[1]).slice(0, 3).map((pair, i) =>
+                <View><Text>{i + 1}. {pair[0]}</Text></View >
+              );
+            }}
+          </LogContext.Consumer>
+          <Title text="Export" />
           <LogContext.Consumer>
             {context =>
               SupportedExportTypes.map(exportType => ExportCard({
@@ -106,7 +129,7 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
               </View>)}
           </LogContext.Consumer> */}
 
-          <Text style={{ marginTop: 25, marginLeft: 15, fontSize: 26, fontWeight: 'bold' }}>Demo Parts</Text>
+          <Title text="Demo Stuff" />
           <DemoNotificationButton />
           <LogContext.Consumer>
             {context => <Button onPress={context.resetLogs} title="Reset To Default" />}
@@ -123,4 +146,4 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
     );
   }
 }
-
+;;

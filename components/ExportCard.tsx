@@ -11,9 +11,9 @@ export interface ExportType {
 }
 
 export const SupportedExportTypes: ExportType[] = [
-  { extension: 'xlsx', displayName: 'Excel' },
   { extension: 'csv', displayName: 'CSV' },
   { extension: 'json', displayName: 'JSON' },
+  { extension: 'xlsx', displayName: 'Excel' },
 ];
 
 function logToFileContents(logs: Log[], filetype: ExportType): string {
