@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 const SelectScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-      <Text>Home! </Text>
+      <Text>Home!</Text>
     </View >
   );
 };
