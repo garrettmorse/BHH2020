@@ -3,7 +3,11 @@ import Root from './navigators/RootNavigator';
 import { LogContext, Log, PersistantStorageLogsKey, loadLogs } from './context/Log';
 import { AsyncStorage } from 'react-native';
 
+
 import { defaultLogs } from './data.json';
+
+console.disableYellowBox = true;
+
 
 export default class App extends React.Component<{}, {
   logs: Log[]; saveLog: (log: Log) => void; resetLogs: () => void;
@@ -39,7 +43,6 @@ export default class App extends React.Component<{}, {
 
   resetLogs = () => {
     const defaultLogsWithDates = defaultLogs.map(log => {
-      console.log(log.time);
       return { health: log.health, questions: log.questions, time: new Date(log.time) };
     });
 

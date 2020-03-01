@@ -19,7 +19,7 @@ export const SupportedExportTypes: ExportType[] = [
 function logToFileContents(logs: Log[], filetype: ExportType): string {
   switch (filetype.extension) {
     case 'xlxs':
-      console.error("Mistakes were made.");
+      alert('.xlxs not supported at this moment in time');
     case 'csv':
       const builder = [];
 
@@ -56,9 +56,6 @@ export function ExportCard({ filetype, logs }) {
             // write file
             const contents = logToFileContents(logs, filetype);
             const uri = FileSystem.cacheDirectory + `data.${filetype.extension}`;
-
-            console.log(uri);
-            console.log(contents);
 
             await FileSystem.writeAsStringAsync(uri, contents);
 

@@ -105,10 +105,6 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
                   });
                 });
 
-                console.log(Object.keys(causes).map(key => {
-                  return [key, causes[key]];
-                }).filter(pair => pair[0] !== "").sort((a, b) => b[1] - a[1]).slice(0, 3));
-
                 return Object.keys(causes).map(key => {
                   return [key, causes[key]];
                 }).sort((a, b) => b[1] - a[1]).filter(pair => pair[0] !== "").slice(0, 3).map((pair, i) =>
