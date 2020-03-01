@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, SafeAreaView, ScrollView, Button, TouchableOpacity, Share } from 'react-native';
 import { LogContext, Log } from '../context/Log';
-import style from '../util/styles';
+import styles from '../util/styles';
 import { Notifications, } from 'expo';
 import * as Permissions from 'expo-permissions';
 import { ExportCard, SupportedExportTypes } from '../components/ExportCard';
@@ -32,8 +32,8 @@ function DemoNotificationButton({ }) {
   }
 
   return (
-    <TouchableOpacity style={style.button} onPress={scheduleNotification}>
-      <Text style={[style.text, { textAlign: 'center', }]}>
+    <TouchableOpacity style={styles.button} onPress={scheduleNotification}>
+      <Text style={[styles.text, { textAlign: 'center', }]}>
         Send a Warning Notification
       </Text>
     </TouchableOpacity>

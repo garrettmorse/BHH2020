@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LogStackScreen from './LogNavigator';
 import ExportStackScreen from './ExportNavigator';
+import CallStackScreen from './EmergencyNavigator';
 import UhOhStinkyScreen from "../screens/UhOhStinkyScreen";
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -30,6 +31,7 @@ export default function Root() {
         <Tab.Screen name="Log" component={LogStackScreen} />
         <Tab.Screen name="Emergency" component={UhOhStinkyScreen} />
         <Tab.Screen name="Export" component={ExportStackScreen} />
+        <Tab.Screen name="Emergency" component={CallStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

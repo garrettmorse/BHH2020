@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, Share } from 'react-native';
 import { Log } from '../context/Log';
-import style from '../util/styles';
+import styles from '../util/styles';
 import * as FileSystem from 'expo-file-system';
 
 
@@ -48,7 +48,7 @@ function logToFileContents(logs: Log[], filetype: ExportType): string {
 export function ExportCard({ filetype, logs }) {
   return (
     <TouchableOpacity
-      style={style.button}
+      style={styles.button}
       key={filetype.displayName}
       onPress={async () => {
         try {
@@ -72,7 +72,7 @@ export function ExportCard({ filetype, logs }) {
         }
       }}
     >
-      <Text style={style.text}>{filetype.displayName} (.{filetype.extension})</Text>
+      <Text style={styles.text}>{filetype.displayName} (.{filetype.extension})</Text>
     </TouchableOpacity>
   );
 }
