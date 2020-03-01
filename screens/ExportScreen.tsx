@@ -5,7 +5,7 @@ import { LogContext } from '../context/Log';
 
 
 
-function ExportCard({ displayName }) {
+function ExportCard({ displayName, extension }) {
   return (
     <View style={{
       flex: 1, margin: 15,
@@ -15,8 +15,8 @@ function ExportCard({ displayName }) {
       shadowColor: "black",
       shadowOffset: { width: -2, height: 2 },
       shadowOpacity: 0.7
-    }} key={displayName}>
-      <Text style={{ color: 'darkblue', fontSize: 26 }}>{displayName}</Text>
+    }} key={displayName} >
+      <Text style={{ color: 'darkblue', fontSize: 26 }}>{displayName} (.{extension})</Text>
     </View>
   );
 }
@@ -54,7 +54,7 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
                 <Text>{log.time.toDateString()}</Text>
               </View>)}
           </LogContext.Consumer>
-          {SupportedExportTypes.map(exportType => ExportCard({ displayName: exportType.displayName }))}
+          {SupportedExportTypes.map(exportType => ExportCard({ displayName: exportType.displayName, extension: exportType.extension }))}
         </ScrollView>
         <LogContext.Consumer>
           {context =>
