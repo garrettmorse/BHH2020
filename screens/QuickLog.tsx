@@ -5,6 +5,7 @@ import styles from "../util/styles";
 import { Log, LogContext, Question, HealthData } from '../context/Log';
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import ButtonGrid from "../components/ButtonGrid";
+import partialLog from '../util/partialLog';
 
 class QuickLog extends React.Component<{ navigation; }, { severity: number; symptoms: String[], triggers: String[]; }> {
   sliderTimeoutId: NodeJS.Timeout;
@@ -40,9 +41,6 @@ class QuickLog extends React.Component<{ navigation; }, { severity: number; symp
   }
 
   makeLog(): Log {
-    const heartRate = Math.random() * 50 + 90;
-    const hoursSleep = Math.random() * 2 + 5;
-
     const questions: Question[] = [
       {
         question: "Severity of the attack",
@@ -58,9 +56,7 @@ class QuickLog extends React.Component<{ navigation; }, { severity: number; symp
       },
     ];
 
-    const log = { time: new Date(), health: { heartRate: heartRate, hoursSleep: hoursSleep }, questions: questions };
-
-    return log;
+    return partialLog(questions);
   }
 
   render() {
