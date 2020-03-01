@@ -29,7 +29,6 @@ function DemoNotificationButton({ }) {
       console.log('Error in scheduleNotification():', error);
     }
 
-
   }
 
   return (

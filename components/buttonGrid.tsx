@@ -14,7 +14,7 @@ const ButtonGrid = ({ labels, toggleValue, selected }) => {
 
         return (<TouchableHighlight
           style={selectedStyle}
-          underlayColor="lightblue"
+          underlayColor="#7c76f9"
           onPress={() => {
             toggleValue(label);
           }}

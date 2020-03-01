@@ -1,28 +1,13 @@
 import React from "react";
-<<<<<<< HEAD
-import { Text, View, ScrollView, TouchableOpacity, TextInput } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, TextInput, Image } from "react-native";
 import styles from "../util/styles";
 import { LogContext, Log, Question } from '../context/Log';
 import partialLog from '../util/partialLog';
-=======
-import {
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  TextInput
-} from "react-native";
-import Slider from "react-native-slider";
-import styles from "../util/styles";
-import buttonGrid from "../components/ButtonGrid";
-import { LogContext, Log, Question } from "../context/Log";
-import partialLog from "../util/partialLog";
->>>>>>> selectScreen
 
 class DetailLog extends React.Component<
   { navigation },
   { severity: string; symptoms: string; triggers: string }
-> {
+  > {
   sliderTimeoutId: NodeJS.Timeout;
   constructor(props) {
     super(props);
@@ -53,7 +38,7 @@ class DetailLog extends React.Component<
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.questionContainer}>
-            <Text style={styles.text}>
+            <Text style={[styles.text, { color: "black" }]}>
               Comment on the severity of your episode.
             </Text>
             <TextInput
@@ -63,7 +48,7 @@ class DetailLog extends React.Component<
             />
           </View>
           <View style={styles.questionContainer}>
-            <Text style={styles.text}>Describe your symptoms to us.</Text>
+            <Text style={[styles.text, { color: "black" }]}>Describe your symptoms to us.</Text>
             <TextInput
               multiline={true}
               style={styles.textbox}
@@ -71,7 +56,7 @@ class DetailLog extends React.Component<
             />
           </View>
           <View style={styles.questionContainer}>
-            <Text style={styles.text}>Tell us about what happened.</Text>
+            <Text style={[styles.text, { color: "black" }]}>Tell us about what happened.</Text>
             <TextInput
               multiline={true}
               style={styles.textbox}
@@ -94,6 +79,10 @@ class DetailLog extends React.Component<
             </LogContext.Consumer>
           </View>
         </View>
+        <Image
+          style={[{ height: "40%", width: "100%" }]}
+          source={require("../assets/images/sorting_thoughts.png")}
+        />
       </ScrollView>
     );
   }

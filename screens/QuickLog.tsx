@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, ScrollView, TouchableOpacity } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
 import Slider from "react-native-slider";
 import styles from "../util/styles";
 import { Log, LogContext, Question, HealthData } from '../context/Log';
@@ -66,7 +66,7 @@ class QuickLog extends React.Component<
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.questionContainer}>
-            <Text style={styles.text}>How severe was your attack?</Text>
+            <Text style={[styles.text, { color: "black" }]}>How severe was your attack?</Text>
             <Slider
               style={styles.slider}
               maximumValue={5}
@@ -75,10 +75,10 @@ class QuickLog extends React.Component<
               step={1}
               onValueChange={severity => this.setState({ severity })}
             ></Slider>
-            <Text style={styles.text}>{this.state.severity}</Text>
+            <Text style={[styles.text, { color: "black" }]}>{this.state.severity}</Text>
           </View>
           <View style={styles.questionContainer}>
-            <Text style={styles.text}>What symptoms did you experience?</Text>
+            <Text style={[styles.text, { color: "black" }]}>What symptoms did you experience?</Text>
             <ButtonGrid
               labels={[
                 "Aggression",
@@ -100,7 +100,7 @@ class QuickLog extends React.Component<
             />
           </View>
           <View style={styles.questionContainer}>
-            <Text style={styles.text}>
+            <Text style={[styles.text, { color: "black" }]}>
               What may have triggered your attack?
             </Text>
             <ButtonGrid
@@ -133,6 +133,10 @@ class QuickLog extends React.Component<
             </LogContext.Consumer>
           </View>
         </View>
+        <Image
+          style={[{ height: "20%", width: "100%" }]}
+          source={require("../assets/images/sorting_thoughts.png")}
+        />
       </ScrollView>
     );
   }
