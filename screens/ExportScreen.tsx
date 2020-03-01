@@ -11,7 +11,7 @@ import { Calendar, } from 'react-native-calendars';
 
 function DemoNotificationButton({ }) {
   async function scheduleNotification() {
-    const notification = { title: 'Are you ok?', body: 'We noticed that your physiological conditions are spiking. Can we help?' };
+    const notification = { title: 'Are You Okay?', body: 'We noticed that your physiological conditions are spiking. Can we help?' };
 
     const scheduling = {
       time: (new Date()).getTime() + 1000 * 5
@@ -34,7 +34,6 @@ function DemoNotificationButton({ }) {
   return (
     <Button title="Send a Warning Notification" onPress={scheduleNotification} />);
 };
-
 
 export default class ExportScreen extends Component<{ navigation, screenProps; }, {}> {
   constructor(props) {

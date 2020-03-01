@@ -8,6 +8,20 @@ const styles = StyleSheet.create({
         padding: 10
     },
     button: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: "center",
+        backgroundColor: "skyblue",
+        padding: 50,
+        width: "80%",
+        marginTop: 50,
+        marginBottom: 50,
+        borderRadius: 100,
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        shadowOffset: { height: 1, width: 1 }
+    },
+    submitButton: {
         alignItems: "center",
         backgroundColor: "skyblue",
         padding: 50,
@@ -19,9 +33,17 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         shadowOffset: { height: 1, width: 1 }
     },
+    buttonBlock: {
+        height: "40%",
+        width: "80%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: -25,
+        marginBottom: -25
+    },
     text: {
         fontSize: 25,
-        color: "darkblue",
+        color: "#292929",
         textAlign: "center"
     },
     textbox: {
@@ -30,7 +52,6 @@ const styles = StyleSheet.create({
         width: "100%",
         borderColor: "darkgray",
         borderWidth: 1
-
     },
     slider: {
         width: "80%"

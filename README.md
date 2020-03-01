@@ -5,15 +5,13 @@
 - Emergency contact
   - clinician
   - friend/family member
-- notepad documentation
+  - etc
 - time/date stamp
 - export/share function
 
-- "button" documentation
+- button toggle input
 - symptom severity scale
-- symptom buttons
-- trigger buttons
-- "yes or no" documentation
+- verbose text input
 
 ## Suggested Suffering
 
@@ -21,6 +19,6 @@
 - video call or phone option
 - some ML or something cool like that
 
-## Technical Work To Do
+## Technical Suffering
 
 - 
