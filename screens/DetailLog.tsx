@@ -1,14 +1,32 @@
 import React from "react";
+<<<<<<< HEAD
 import { Text, View, ScrollView, TouchableOpacity, TextInput } from "react-native";
 import styles from "../util/styles";
 import { LogContext, Log, Question } from '../context/Log';
 import partialLog from '../util/partialLog';
+=======
+import {
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  TextInput
+} from "react-native";
+import Slider from "react-native-slider";
+import styles from "../util/styles";
+import buttonGrid from "../components/ButtonGrid";
+import { LogContext, Log, Question } from "../context/Log";
+import partialLog from "../util/partialLog";
+>>>>>>> selectScreen
 
-class DetailLog extends React.Component<{ navigation; }, { severity: string; symptoms: string; triggers: string; }> {
+class DetailLog extends React.Component<
+  { navigation },
+  { severity: string; symptoms: string; triggers: string }
+> {
   sliderTimeoutId: NodeJS.Timeout;
   constructor(props) {
     super(props);
-    this.state = { severity: '', symptoms: '', triggers: '' };
+    this.state = { severity: "", symptoms: "", triggers: "" };
   }
 
   makeLog(): Log {
@@ -24,7 +42,7 @@ class DetailLog extends React.Component<{ navigation; }, { severity: string; sym
       {
         question: "What may have triggered your attack?",
         response: this.state.triggers
-      },
+      }
     ];
 
     return partialLog(questions);
@@ -35,30 +53,44 @@ class DetailLog extends React.Component<{ navigation; }, { severity: string; sym
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.questionContainer}>
-            <Text style={styles.text}>Comment on the severity of your episode.</Text>
-            <TextInput multiline={true} style={styles.textbox} onChangeText={
-              text => this.setState({ severity: text })} />
+            <Text style={styles.text}>
+              Comment on the severity of your episode.
+            </Text>
+            <TextInput
+              multiline={true}
+              style={styles.textbox}
+              onChangeText={text => this.setState({ severity: text })}
+            />
           </View>
           <View style={styles.questionContainer}>
             <Text style={styles.text}>Describe your symptoms to us.</Text>
-            <TextInput multiline={true} style={styles.textbox} onChangeText={text => this.setState({ symptoms: text })} />
+            <TextInput
+              multiline={true}
+              style={styles.textbox}
+              onChangeText={text => this.setState({ symptoms: text })}
+            />
           </View>
           <View style={styles.questionContainer}>
-            <Text style={styles.text}>
-              Tell us about what happened.
-            </Text>
-            <TextInput multiline={true} style={styles.textbox} onChangeText={text => this.setState({ triggers: text })} />
+            <Text style={styles.text}>Tell us about what happened.</Text>
+            <TextInput
+              multiline={true}
+              style={styles.textbox}
+              onChangeText={text => this.setState({ triggers: text })}
+            />
           </View>
           <View style={styles.questionContainer}>
             <LogContext.Consumer>
-              {context =>
-                <TouchableOpacity style={styles.button} onPress={() => {
-                  context.saveLog(this.makeLog());
-                  this.props.navigation.navigate('Log Event');
-                }}>
+              {context => (
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => {
+                    context.saveLog(this.makeLog());
+                    this.props.navigation.navigate("Log Event");
+                  }}
+                >
                   <Text style={styles.text}>Submit</Text>
                 </TouchableOpacity>
-              }
+              )}
             </LogContext.Consumer>
           </View>
         </View>
@@ -67,4 +99,4 @@ class DetailLog extends React.Component<{ navigation; }, { severity: string; sym
   }
 }
 
-export default DetailLog;;;
+export default DetailLog;

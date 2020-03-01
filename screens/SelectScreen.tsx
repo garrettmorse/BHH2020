@@ -1,6 +1,7 @@
 import React from "react";
-import { Text, View, TouchableOpacity, Alert, StyleSheet, StatusBar } from "react-native";
+import { Text, View, TouchableOpacity, Alert, StyleSheet, StatusBar, Image } from "react-native";
 import styles from "../util/styles";
+import { ScrollView } from "react-native-gesture-handler";
 
 const SelectScreen = ({ navigation }) => {
   return (
@@ -24,6 +25,10 @@ const SelectScreen = ({ navigation }) => {
       >
         <Text style={styles.text}> Video Update </Text>
       </TouchableOpacity>
+      <Image
+        style={[styles.button]}
+        source={require("../assets/images/undraw_healthy_lifestyle_6tyl.png")}
+      />
     </View>
   );
 };
