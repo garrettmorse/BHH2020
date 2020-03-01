@@ -1,28 +1,13 @@
 import React from "react";
-<<<<<<< HEAD
 import { Text, View, ScrollView, TouchableOpacity, TextInput } from "react-native";
 import styles from "../util/styles";
 import { LogContext, Log, Question } from '../context/Log';
 import partialLog from '../util/partialLog';
-=======
-import {
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  TextInput
-} from "react-native";
-import Slider from "react-native-slider";
-import styles from "../util/styles";
-import buttonGrid from "../components/ButtonGrid";
-import { LogContext, Log, Question } from "../context/Log";
-import partialLog from "../util/partialLog";
->>>>>>> selectScreen
 
 class DetailLog extends React.Component<
-  { navigation },
-  { severity: string; symptoms: string; triggers: string }
-> {
+  { navigation; },
+  { severity: string; symptoms: string; triggers: string; }
+  > {
   sliderTimeoutId: NodeJS.Timeout;
   constructor(props) {
     super(props);
