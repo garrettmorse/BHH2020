@@ -10,29 +10,21 @@ import {
 import styles from "../util/styles";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 
-const buttonGrid = (label1, label2, label3) => {
+const ButtonGrid = ({ labels, toggleValue, selected }) => {
   return (
     <View style={styles.grid}>
-      <TouchableOpacity
-        style={styles.squareButton}
-        onPress={() => alert("cheese")}
-      >
-        <Text style={[styles.text, { fontSize: 18 }]}>{label1}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.squareButton}
-        onPress={() => alert("cheese")}
-      >
-        <Text style={[styles.text, { fontSize: 18 }]}>{label2}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.squareButton}
-        onPress={() => alert("cheese")}
-      >
-        <Text style={[styles.text, { fontSize: 18 }]}>{label3}</Text>
-      </TouchableOpacity>
+      {labels.map(label => {
+        const selectedStyle = selected.indexOf(label) >= 0 ? [styles.squareButton, { backgroundColor: 'blue' }] : styles.squareButton;
+
+        return (<TouchableOpacity
+          style={selectedStyle}
+          onPress={() => toggleValue(label)}
+        >
+          <Text style={[styles.text, { fontSize: 18 }]}>{label}</Text>
+        </TouchableOpacity>);
+      })}
     </View>
   );
 };
 
-export default buttonGrid;
+export default ButtonGrid;

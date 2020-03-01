@@ -44,4 +44,4 @@ async function loadLogs(): Promise<Log[]> {
 
 const LogContext = React.createContext<LogState>({ logs: [], saveLog: () => { } });
 
-export { LogContext, Log, loadLogs, PersistantStorageLogsKey };
+export { LogContext, Log, loadLogs, PersistantStorageLogsKey, Question, HealthData };
