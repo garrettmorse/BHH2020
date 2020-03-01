@@ -26,7 +26,6 @@ const SelectScreen = ({ navigation }) => {
         >
           <Text style={styles.text}> Video Update </Text>
         </TouchableOpacity>
-        {/* <View style={{ height: 50 }} /> */}
         <Image
           style={[{ height: "75%", width: "100%" }]}
           source={require("../assets/images/undraw_healthy_lifestyle_6tyl.png")}

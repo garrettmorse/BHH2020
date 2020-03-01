@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     textbox: {
         paddingBottom: 50,
-        height: "50%",
+        height: "60%",
         width: "100%",
         borderColor: "darkgray",
         borderWidth: 1

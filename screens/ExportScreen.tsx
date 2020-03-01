@@ -146,10 +146,12 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
             }
           </LogContext.Consumer>
           <View style={{ height: 40 }} />
-          <Image
-            style={[{ height: "40%", width: "100%" }]}
-            source={require("../assets/images/data.png")}
-          />
+          <View>
+            <Image
+              style={[{ height: "30%", width: "100%" }]}
+              source={require("../assets/images/data.png")}
+            />
+          </View>
         </ScrollView>
       </SafeAreaView>
     );

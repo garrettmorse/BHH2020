@@ -49,7 +49,7 @@ export function ExportCard({ filetype, logs }) {
   return (
     <View style={{ alignItems: "center", justifyContent: "center" }}>
       <TouchableOpacity
-        style={[styles.button, { marginVertical: 10 }]}
+        style={[styles.button, { marginVertical: 15 }]}
         key={filetype.displayName}
         onPress={async () => {
           try {
