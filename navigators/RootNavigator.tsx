@@ -2,9 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LogStackScreen from './LogNavigator';
-import CallStackScreen from './EmergencyNavigator'
-import ExportScreen from '../screens/ExportScreen';
-import UhOhStinkyScreen from "../screens/UhOhStinkyScreen";
+import ExportStackScreen from './ExportNavigator';
+import CallStackScreen from './EmergencyNavigator';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -30,7 +29,7 @@ export default function Root() {
       >
         <Tab.Screen name="Log" component={LogStackScreen} />
         <Tab.Screen name="Emergency" component={CallStackScreen} />
-        <Tab.Screen name="Export" component={ExportScreen} />
+        <Tab.Screen name="Export" component={ExportStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

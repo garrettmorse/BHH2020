@@ -3,12 +3,33 @@ import { Text, View, ScrollView, TouchableOpacity, TextInput } from "react-nativ
 import Slider from "react-native-slider";
 import styles from "../util/styles";
 import buttonGrid from "../components/buttonGrid";
+import { LogContext, Log, Question } from '../context/Log';
+import partialLog from '../util/partialLog';
 
-class DetailLog extends React.Component<{}, { value: number }> {
+class DetailLog extends React.Component<{ navigation; }, { severity: string; symptoms: string; triggers: string; }> {
   sliderTimeoutId: NodeJS.Timeout;
   constructor(props) {
     super(props);
-    this.state = { value: 1 };
+    this.state = { severity: '', symptoms: '', triggers: '' };
+  }
+
+  makeLog(): Log {
+    const questions: Question[] = [
+      {
+        question: "Severity of the attack",
+        response: this.state.severity
+      },
+      {
+        question: "What symptoms did you experience?",
+        response: this.state.symptoms
+      },
+      {
+        question: "What may have triggered your attack?",
+        response: this.state.triggers
+      },
+    ];
+
+    return partialLog(questions);
   }
 
   render() {
@@ -17,22 +38,30 @@ class DetailLog extends React.Component<{}, { value: number }> {
         <View style={styles.container}>
           <View style={styles.questionContainer}>
             <Text style={styles.text}>Comment on the severity of your episode.</Text>
-            <TextInput multiline={true} style={styles.textbox} />
+            <TextInput multiline={true} style={styles.textbox} onChangeText={
+              text => this.setState({ severity: text })} />
           </View>
           <View style={styles.questionContainer}>
             <Text style={styles.text}>Describe your symptoms to us.</Text>
-            <TextInput multiline={true} style={styles.textbox} />
+            <TextInput multiline={true} style={styles.textbox} onChangeText={text => this.setState({ symptoms: text })} />
           </View>
           <View style={styles.questionContainer}>
             <Text style={styles.text}>
               Tell us about what happened.
             </Text>
-            <TextInput multiline={true} style={styles.textbox} />
+            <TextInput multiline={true} style={styles.textbox} onChangeText={text => this.setState({ triggers: text })} />
           </View>
           <View style={styles.questionContainer}>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.text}>Submit</Text>
-            </TouchableOpacity>
+            <LogContext.Consumer>
+              {context =>
+                <TouchableOpacity style={styles.button} onPress={() => {
+                  context.saveLog(this.makeLog());
+                  this.props.navigation.navigate('Log Event');
+                }}>
+                  <Text style={styles.text}>Submit</Text>
+                </TouchableOpacity>
+              }
+            </LogContext.Consumer>
           </View>
         </View>
       </ScrollView>
@@ -40,4 +69,4 @@ class DetailLog extends React.Component<{}, { value: number }> {
   }
 }
 
-export default DetailLog;
+export default DetailLog;;;
