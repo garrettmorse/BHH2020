@@ -87,32 +87,37 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
               />;
             }}
           </LogContext.Consumer>
-          <Title text="Causes" />
-          <LogContext.Consumer>
-            {context => {
-              const causes = {};
+          <Title text="Common Triggers" />
+          <View style={{ backgroundColor: 'white', margin: 10, borderRadius: 10 }}>
 
-              context.logs.forEach(log => {
-                log.questions.filter(q => q.question === 'What symptoms did you experience?').forEach(q => {
-                  q.response.split(',').forEach(a => {
-                    if (a in causes) {
-                      causes[a] += 1;
-                    } else {
-                      causes[a] = 1;
-                    }
+            <LogContext.Consumer>
+              {context => {
+                const causes = {};
+
+                context.logs.forEach(log => {
+                  log.questions.filter(q => q.question === 'What may have triggered your attack?').forEach(q => {
+                    q.response.split(',').forEach(a => {
+                      if (a in causes) {
+                        causes[a] += 1;
+                      } else {
+                        causes[a] = 1;
+                      }
+                    });
                   });
                 });
-              });
 
 
 
-              return Object.keys(causes).map(key => {
-                return [key, causes[key]];
-              }).sort((a, b) => b[1] - a[1]).slice(0, 3).map((pair, i) =>
-                <View><Text>{i + 1}. {pair[0]}</Text></View >
-              );
-            }}
-          </LogContext.Consumer>
+                return Object.keys(causes).map(key => {
+                  return [key, causes[key]];
+                }).sort((a, b) => b[1] - a[1]).slice(0, 3).map((pair, i) =>
+                  <Text style={{ fontSize: 18, marginLeft: 15, marginTop: 12, }}>{i + 1}. {pair[0]}</Text>
+                );
+              }}
+
+            </LogContext.Consumer>
+            <View style={{ height: 15 }} />
+          </View>
           <Title text="Export" />
           <LogContext.Consumer>
             {context =>

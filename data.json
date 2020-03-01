@@ -31,6 +31,10 @@
         {
           "question": "What symptoms did you experience?",
           "response": "Insomnia,Extreme Irritation"
+        },
+        {
+          "question": "What may have triggered your attack?",
+          "response": "Loud Noise,Smell,Other"
         }
       ]
     },
@@ -113,6 +117,10 @@
         {
           "question": "Severity of the attack",
           "response": "2"
+        },
+        {
+          "question": "What may have triggered your attack?",
+          "response": "Large Crowd,Nightmare"
         }
       ]
     },
@@ -126,6 +134,10 @@
         {
           "question": "Severity of the attack",
           "response": "2"
+        },
+        {
+          "question": "What may have triggered your attack?",
+          "response": "Nightmare"
         }
       ]
     },
