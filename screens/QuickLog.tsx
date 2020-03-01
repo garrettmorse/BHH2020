@@ -2,12 +2,15 @@ import React from "react";
 import { Text, View, StyleSheet, ScrollView, Alert } from "react-native";
 import Slider from "react-native-slider";
 import styles from "../util/styles";
-import { Log, LogContext, Question, HealthData } from '../context/Log';
+import { Log, LogContext, Question, HealthData } from "../context/Log";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import ButtonGrid from "../components/ButtonGrid";
-import partialLog from '../util/partialLog';
+import partialLog from "../util/partialLog";
 
-class QuickLog extends React.Component<{ navigation; }, { severity: number; symptoms: String[], triggers: String[]; }> {
+class QuickLog extends React.Component<
+  { navigation },
+  { severity: number; symptoms: String[]; triggers: String[] }
+> {
   sliderTimeoutId: NodeJS.Timeout;
   constructor(props) {
     super(props);
@@ -53,7 +56,7 @@ class QuickLog extends React.Component<{ navigation; }, { severity: number; symp
       {
         question: "What may have triggered your attack?",
         response: this.state.triggers.join(",")
-      },
+      }
     ];
 
     return partialLog(questions);
@@ -77,46 +80,63 @@ class QuickLog extends React.Component<{ navigation; }, { severity: number; symp
           </View>
           <View style={styles.questionContainer}>
             <Text style={styles.text}>What symptoms did you experience?</Text>
-            <ButtonGrid labels={[
-              "Aggression",
-              "Extreme Irritation",
-              "Difficulty Breathing"
-            ]} toggleValue={(value) => this.updateSymptoms(value)} selected={this.state.symptoms} />
-            <ButtonGrid labels={[
-              "Dizziness", "Shaking", "Insomnia"
-            ]} toggleValue={(value) => this.updateSymptoms(value)} selected={this.state.symptoms} />
-            <ButtonGrid labels={[
-              "Flashbacks", "Suicidal Thoughts", "Other"
-            ]} toggleValue={(value) => this.updateSymptoms(value)} selected={this.state.symptoms} />
+            <ButtonGrid
+              labels={[
+                "Aggression",
+                "Extreme Irritation",
+                "Difficulty Breathing"
+              ]}
+              toggleValue={value => this.updateSymptoms(value)}
+              selected={this.state.symptoms}
+            />
+            <ButtonGrid
+              labels={["Dizziness", "Shaking", "Insomnia"]}
+              toggleValue={value => this.updateSymptoms(value)}
+              selected={this.state.symptoms}
+            />
+            <ButtonGrid
+              labels={["Flashbacks", "Suicidal Thoughts", "Other"]}
+              toggleValue={value => this.updateSymptoms(value)}
+              selected={this.state.symptoms}
+            />
           </View>
           <View style={styles.questionContainer}>
             <Text style={styles.text}>
               What may have triggered your attack?
             </Text>
-            <ButtonGrid labels={[
-              "Loud Noise", "Large Crowd", "Nightmare"
-            ]} toggleValue={(value) => this.updateTriggers(value)} selected={this.state.triggers} />
-            <ButtonGrid labels={[
-              "Smell", "Induced Pain", "Loneliness"
-            ]} toggleValue={(value) => this.updateTriggers(value)} selected={this.state.triggers} />
-            <ButtonGrid labels={[
-              "Feeling Vulnerable", "Fear or Anxiety", "Other"
-            ]} toggleValue={(value) => this.updateTriggers(value)} selected={this.state.triggers} />
+            <ButtonGrid
+              labels={["Loud Noise", "Large Crowd", "Nightmare"]}
+              toggleValue={value => this.updateTriggers(value)}
+              selected={this.state.triggers}
+            />
+            <ButtonGrid
+              labels={["Smell", "Induced Pain", "Loneliness"]}
+              toggleValue={value => this.updateTriggers(value)}
+              selected={this.state.triggers}
+            />
+            <ButtonGrid
+              labels={["Feeling Vulnerable", "Fear or Anxiety", "Other"]}
+              toggleValue={value => this.updateTriggers(value)}
+              selected={this.state.triggers}
+            />
           </View>
           <View style={styles.questionContainer}>
             <LogContext.Consumer>
-              {context =>
-                <TouchableOpacity style={styles.button} onPress={() => {
-                  context.saveLog(this.makeLog());
-                  this.props.navigation.navigate('Log Event');
-                }}>
+              {context => (
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => {
+                    context.saveLog(this.makeLog());
+                    this.props.navigation.navigate("Log Event");
+                  }}
+                >
                   <Text style={styles.text}>Submit</Text>
                 </TouchableOpacity>
-              }
+              )}
             </LogContext.Consumer>
           </View>
         </View>
-      </ScrollView >
+      </ScrollView>
     );
   }
 }
