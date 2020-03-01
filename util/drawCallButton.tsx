@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import { callNumber } from './phonecall';
 import styles from "./styles";
 import { Feather } from '@expo/vector-icons';
@@ -7,8 +7,10 @@ import { Feather } from '@expo/vector-icons';
 function drawCallButton(name: string, telNumber: string) {
     return (
         <TouchableOpacity onPress={() => callNumber(telNumber)} style={styles.button} >
-            <Feather name="phone" size={50} color={"#6c63ff"} />
-            <Text style={styles.text}>{name}</Text>
+            <View style={{ flexDirection: "row" }}>
+                <Feather name="phone" style={{ alignItems: "flex-start" }} size={40} color={"lightblue"} />
+                <Text style={styles.text}>{name}</Text>
+            </View>
         </TouchableOpacity>
     )
 }
