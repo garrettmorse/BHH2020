@@ -1,11 +1,12 @@
 import React from "react";
-import { Text, View, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity, Alert, StyleSheet, StatusBar } from "react-native";
 import styles from "../util/styles";
 
 const SelectScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={styles.buttonBlock}>
+        <StatusBar barStyle="dark-content" />
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Quick Log")}

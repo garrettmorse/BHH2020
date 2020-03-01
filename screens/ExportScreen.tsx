@@ -4,8 +4,9 @@ import { LogContext, Log } from '../context/Log';
 import styles from '../util/styles';
 import { Notifications, } from 'expo';
 import * as Permissions from 'expo-permissions';
+import moment from 'moment';
 import { ExportCard, SupportedExportTypes } from '../components/ExportCard';
-
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 function DemoNotificationButton({ }) {
   async function scheduleNotification() {
@@ -48,10 +49,55 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
     this.state = {};
   }
 
+  formatDateString(date: Date): string {
+    console.log(moment(date).format('YYYY-MM-DD'));
+    return moment(date).format('YYYY-MM-DD');
+  }
+
+  formatSelectColor(log: Log): string { // valid CSS color string
+    console.log(log.questions);
+    const severityQuestions = log.questions.filter(q => q.question == 'Severity of the attack');
+    console.log(severityQuestions);
+
+    let singleValue = severityQuestions.length > 0 ? parseFloat(severityQuestions[0].response) : 0.5;
+
+    if (isNaN(singleValue)) {
+      singleValue = 0.5;
+    }
+
+    const h = (1.0 - singleValue) * 240;
+    return "hsl(" + h + ", 40%, 50%)";
+  }
+
   render() {
+
     return (
       <SafeAreaView>
         <ScrollView>
+          <LogContext.Consumer>
+            {context => {
+
+              const markedDates = {};
+
+              context.logs.forEach(log => {
+                markedDates[this.formatDateString(log.time)] = { selected: true, selectedColor: this.formatSelectColor(log) };
+              });
+
+              console.log(markedDates);
+
+              return <Calendar
+                style={{
+                  margin: 15, borderRadius: 10,
+                }}
+                // Initially visible month. Default = Date()
+                current={'2020-02-01'}
+                maxDate={Date()}
+                // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
+                monthFormat={'MM/yyyy'}
+                markedDates={markedDates}
+              />;
+            }}
+          </LogContext.Consumer>
           <LogContext.Consumer>
             {context =>
               SupportedExportTypes.map(exportType => ExportCard({
