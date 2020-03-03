@@ -24,4 +24,4 @@ If you wish to suffer, then you need Expo, Node.js, npm, etc. Clone this bad boi
 
 ## Technical Suffering
 
-- 
+- lmao
