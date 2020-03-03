@@ -31,8 +31,6 @@ const SelectScreen = ({ navigation }) => {
           source={require("../assets/images/undraw_healthy_lifestyle_6tyl.png")}
         />
       </ScrollView>
-
-
     </View >
   );
 };
