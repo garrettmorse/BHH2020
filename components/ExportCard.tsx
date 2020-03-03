@@ -11,15 +11,15 @@ export interface ExportType {
 }
 
 export const SupportedExportTypes: ExportType[] = [
-  { extension: 'xlsx', displayName: 'Excel' },
   { extension: 'csv', displayName: 'CSV' },
   { extension: 'json', displayName: 'JSON' },
+  { extension: 'xlsx', displayName: 'Excel' },
 ];
 
 function logToFileContents(logs: Log[], filetype: ExportType): string {
   switch (filetype.extension) {
     case 'xlxs':
-      console.error("Mistakes were made.");
+      alert('.xlxs not supported at this moment in time');
     case 'csv':
       const builder = [];
 
@@ -49,16 +49,13 @@ export function ExportCard({ filetype, logs }) {
   return (
     <View style={{ alignItems: "center", justifyContent: "center" }}>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, { marginVertical: 15 }]}
         key={filetype.displayName}
         onPress={async () => {
           try {
             // write file
             const contents = logToFileContents(logs, filetype);
             const uri = FileSystem.cacheDirectory + `data.${filetype.extension}`;
-
-            console.log(uri);
-            console.log(contents);
 
             await FileSystem.writeAsStringAsync(uri, contents);
 

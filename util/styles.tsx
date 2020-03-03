@@ -1,5 +1,11 @@
 import { StyleSheet } from "react-native";
 
+const Colors = {
+    highlight: '#666699',
+    primary: '#6c63ff',
+    selectedPrimary: 'darkblue'
+};
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -11,11 +17,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: "center",
-        backgroundColor: "#6c63ff",
-        padding: 50,
-        width: "80%",
-        marginTop: 50,
-        marginBottom: 50,
+        backgroundColor: Colors.primary,
+        padding: 40,
+        width: "90%",
+        marginVertical: 40,
         borderRadius: 100,
         shadowOpacity: 0.3,
         shadowRadius: 2,
@@ -23,7 +28,7 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         alignItems: "center",
-        backgroundColor: "#6c63ff",
+        backgroundColor: Colors.primary,
         padding: 50,
         width: "100%",
         marginTop: 50,
@@ -48,7 +53,7 @@ const styles = StyleSheet.create({
     },
     textbox: {
         paddingBottom: 50,
-        height: "50%",
+        height: "60%",
         width: "100%",
         borderColor: "darkgray",
         borderWidth: 1
@@ -59,7 +64,7 @@ const styles = StyleSheet.create({
     squareButton: {
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#6c63ff",
+        backgroundColor: Colors.primary,
         padding: 10,
         width: 115,
         height: 115,
@@ -93,3 +98,7 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
+
+
+
+export { Colors };

@@ -1,14 +1,31 @@
 import React from "react";
 import { Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
 import Slider from "react-native-slider";
+import Title from '../components/Title';
 import styles from "../util/styles";
-import { Log, LogContext, Question, HealthData } from '../context/Log';
+import { Log, LogContext, Question } from '../context/Log';
 import ButtonGrid from "../components/ButtonGrid";
 import partialLog from "../util/partialLog";
 
+function PhysiologicalCondition({ condition, value, measurement }) {
+  return (
+    <View style={{ marginVertical: 10 }}>
+      <Text style={{ marginLeft: 5 }}>{condition}</Text>
+      <Text style={{ marginLeft: 5, fontSize: 20, fontWeight: 'bold' }}>{value} {measurement}</Text>
+    </View>);
+}
+
+const messages = [
+  "Moderate",
+  "",
+  "Mild",
+  "",
+  "Severe",
+];
+
 class QuickLog extends React.Component<
-  { navigation },
-  { severity: number; symptoms: String[]; triggers: String[] }
+  { navigation; },
+  { severity: number; symptoms: String[]; triggers: String[]; hoursSleep: number; heartRate: number; bodyTemp: number; }
   > {
   sliderTimeoutId: NodeJS.Timeout;
   constructor(props) {
@@ -16,8 +33,19 @@ class QuickLog extends React.Component<
     this.state = {
       symptoms: [],
       triggers: [],
-      severity: 1
+      severity: 1,
+      hoursSleep: 0,
+      heartRate: 0,
+      bodyTemp: 0,
     };
+  }
+
+  componentDidMount() {
+    const bodyTemp = Math.random() * 4 + 99;
+    const heartRate = Math.random() * 25 + 100;
+    const hoursSleep = Math.random() * 4 + 3;
+
+    this.setState({ bodyTemp, heartRate, hoursSleep });
   }
 
   toggleValueFromList<T>(value: T, list: T[]): T[] {
@@ -75,7 +103,9 @@ class QuickLog extends React.Component<
               step={1}
               onValueChange={severity => this.setState({ severity })}
             ></Slider>
-            <Text style={[styles.text, { color: "black" }]}>{this.state.severity}</Text>
+            <Text>{this.state.severity}{
+              messages[this.state.severity - 1] ? ": " + messages[this.state.severity - 1] : null}</Text>
+
           </View>
           <View style={styles.questionContainer}>
             <Text style={[styles.text, { color: "black" }]}>What symptoms did you experience?</Text>
@@ -119,19 +149,24 @@ class QuickLog extends React.Component<
               selected={this.state.triggers}
             />
           </View>
-          <View style={styles.questionContainer}>
-            <LogContext.Consumer>
-              {context =>
-                <TouchableOpacity style={styles.button} onPress={() => {
-                  context.saveLog(this.makeLog());
-                  this.props.navigation.navigate('Log Event');
-                  alert("Success!");
-                }}>
-                  <Text style={styles.text}>Submit</Text>
-                </TouchableOpacity>
-              }
-            </LogContext.Consumer>
+          <View style={{ backgroundColor: 'white', marginBottom: 10, borderRadius: 10, padding: 10 }}>
+            <Title text="Physiological Conditions" />
+            <PhysiologicalCondition condition="Heart Rate" value={this.state.heartRate.toLocaleString(undefined, { maximumFractionDigits: 0 })} measurement="BPM" />
+            <PhysiologicalCondition condition="Body Temp." value={this.state.bodyTemp.toLocaleString(undefined, { maximumFractionDigits: 1 })} measurement="deg" />
+            <PhysiologicalCondition condition="Hours of Sleep" value={this.state.hoursSleep.toLocaleString(undefined, { maximumFractionDigits: 1 })} measurement="hours" />
+
           </View>
+          <LogContext.Consumer>
+            {context =>
+              <TouchableOpacity style={[styles.button, { marginTop: 10, marginBottom: 20, alignSelf: 'center' }]} onPress={() => {
+                context.saveLog(this.makeLog());
+                this.props.navigation.navigate('Log Event');
+                alert("Success!");
+              }}>
+                <Text style={styles.text}>Submit</Text>
+              </TouchableOpacity>
+            }
+          </LogContext.Consumer>
         </View>
         <Image
           style={[{ height: "20%", width: "100%" }]}

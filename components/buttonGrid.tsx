@@ -4,13 +4,14 @@ import {
   View,
   TouchableHighlight
 } from "react-native";
-import styles from "../util/styles";
+import styles, { Colors } from "../util/styles";
 
 const ButtonGrid = ({ labels, toggleValue, selected }) => {
   return (
     <View style={styles.grid}>
       {labels.map(label => {
-        const selectedStyle = selected.indexOf(label) >= 0 ? [styles.squareButton, { backgroundColor: '#b8bde6' }] : styles.squareButton;
+        const selectedStyle = selected.indexOf(label) >= 0 ? [styles.squareButton, { backgroundColor: Colors.selectedPrimary }] : styles.squareButton;
+
 
         return (<TouchableHighlight
           style={selectedStyle}

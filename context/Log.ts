@@ -1,6 +1,7 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
 
+
 interface HealthData {
   heartRate: number;
   hoursSleep: number;
@@ -20,6 +21,7 @@ interface Log {
 interface LogState {
   logs: Log[];
   saveLog: (log: Log) => void;
+  resetLogs: () => void;
 }
 
 const PersistantStorageLogsKey = 'bhh-2020-logs';
@@ -42,6 +44,7 @@ async function loadLogs(): Promise<Log[]> {
   }
 };
 
-const LogContext = React.createContext<LogState>({ logs: [], saveLog: () => { } });
+
+const LogContext = React.createContext<LogState>({ logs: [], saveLog: () => { }, resetLogs: () => { } });
 
 export { LogContext, Log, loadLogs, PersistantStorageLogsKey, Question, HealthData };

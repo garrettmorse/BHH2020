@@ -5,8 +5,8 @@ import { LogContext, Log, Question } from '../context/Log';
 import partialLog from '../util/partialLog';
 
 class DetailLog extends React.Component<
-  { navigation },
-  { severity: string; symptoms: string; triggers: string }
+  { navigation; },
+  { severity: string; symptoms: string; triggers: string; }
   > {
   sliderTimeoutId: NodeJS.Timeout;
   constructor(props) {
@@ -37,8 +37,8 @@ class DetailLog extends React.Component<
     return (
       <ScrollView>
         <View style={styles.container}>
-          <View style={styles.questionContainer}>
-            <Text style={[styles.text, { color: "black" }]}>
+          <View style={[styles.questionContainer, { alignItems: 'flex-start' }]}>
+            <Text style={{ fontSize: 16, paddingVertical: 5 }}>
               Comment on the severity of your episode.
             </Text>
             <TextInput
@@ -47,37 +47,35 @@ class DetailLog extends React.Component<
               onChangeText={text => this.setState({ severity: text })}
             />
           </View>
-          <View style={styles.questionContainer}>
-            <Text style={[styles.text, { color: "black" }]}>Describe your symptoms to us.</Text>
+          <View style={[styles.questionContainer, { alignItems: 'flex-start' }]}>
+            <Text style={{ fontSize: 16, paddingVertical: 5 }}>Describe your symptoms to us.</Text>
             <TextInput
               multiline={true}
               style={styles.textbox}
               onChangeText={text => this.setState({ symptoms: text })}
             />
           </View>
-          <View style={styles.questionContainer}>
-            <Text style={[styles.text, { color: "black" }]}>Tell us about what happened.</Text>
+          <View style={[styles.questionContainer, { alignItems: 'flex-start' }]}>
+            <Text style={{ fontSize: 16, paddingVertical: 5 }}>Tell us about what happened.</Text>
             <TextInput
               multiline={true}
               style={styles.textbox}
               onChangeText={text => this.setState({ triggers: text })}
             />
           </View>
-          <View style={styles.questionContainer}>
-            <LogContext.Consumer>
-              {context => (
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    context.saveLog(this.makeLog());
-                    this.props.navigation.navigate("Log Event");
-                  }}
-                >
-                  <Text style={styles.text}>Submit</Text>
-                </TouchableOpacity>
-              )}
-            </LogContext.Consumer>
-          </View>
+          <LogContext.Consumer>
+            {context => (
+              <TouchableOpacity
+                style={[styles.button, { alignSelf: 'center' }]}
+                onPress={() => {
+                  context.saveLog(this.makeLog());
+                  this.props.navigation.navigate("Log Event");
+                }}
+              >
+                <Text style={styles.text}>Submit</Text>
+              </TouchableOpacity>
+            )}
+          </LogContext.Consumer>
         </View>
         <Image
           style={[{ height: "40%", width: "100%" }]}

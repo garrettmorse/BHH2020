@@ -4,15 +4,21 @@ import { LogContext, Log, PersistantStorageLogsKey, loadLogs } from './context/L
 import { AsyncStorage } from 'react-native';
 
 
+import { defaultLogs } from './data.json';
+
+console.disableYellowBox = true;
+
+
 export default class App extends React.Component<{}, {
-  logs: Log[], saveLog: (log: Log) => void;
+  logs: Log[]; saveLog: (log: Log) => void; resetLogs: () => void;
 }> {
   constructor(props) {
     super(props);
 
     this.state = {
       logs: [],
-      saveLog: this.saveLog
+      saveLog: this.saveLog,
+      resetLogs: this.resetLogs
     };
   };
 
@@ -35,6 +41,16 @@ export default class App extends React.Component<{}, {
     }));
   };
 
+  resetLogs = () => {
+    const defaultLogsWithDates = defaultLogs.map(log => {
+      return { health: log.health, questions: log.questions, time: new Date(log.time) };
+    });
+
+    this.setState({ logs: defaultLogsWithDates });
+
+    AsyncStorage.setItem(PersistantStorageLogsKey, JSON.stringify(defaultLogsWithDates));
+  };
+
   render() {
     return (
       <LogContext.Provider value={this.state}>
@@ -42,6 +58,4 @@ export default class App extends React.Component<{}, {
       </LogContext.Provider >
     );
   }
-
-}
-;
+};
