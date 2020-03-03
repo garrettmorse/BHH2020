@@ -7,11 +7,11 @@ import { Notifications, } from 'expo';
 import * as Permissions from 'expo-permissions';
 import moment from 'moment';
 import { ExportCard, SupportedExportTypes } from '../components/ExportCard';
-import { Calendar, } from 'react-native-calendars';
+import { Calendar, LocaleConfig } from 'react-native-calendars';
 
 function DemoNotificationButton({ }) {
   async function scheduleNotification() {
-    const notification = { title: 'Are You Okay?', body: 'We noticed that your physiological conditions are spiking. Can we help?' };
+    const notification = { title: 'Are You Okay?', body: 'We noticed that your physiological conditions are spiking. Let us help you.' };
 
     const scheduling = {
       time: (new Date()).getTime() + 1000 * 5
@@ -68,8 +68,9 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
           <LogContext.Consumer>
             {context => {
               const markedDates = {};
-
+              const data = {};
               context.logs.forEach(log => {
+                data[this.formatDateString(log.time)] = { data: log }
                 markedDates[this.formatDateString(log.time)] = { selected: true, selectedColor: this.formatSelectColor(log) };
               });
 
@@ -80,6 +81,16 @@ export default class ExportScreen extends Component<{ navigation, screenProps; }
                 // Initially visible month. Default = Date()
                 current={'2020-02-02'}
                 maxDate={Date()}
+                onDayPress={(day) => {
+                  let months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                  if (data[day.dateString]) {
+                    var count = 0;
+                    count++; // for later
+                    let output = months[day.month] + " " + day.day + " Entry " + count + "\nSeverity: " + data[day.dateString].data.questions[0].response;
+                    alert(output);
+                  }
+
+                }}
                 // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
                 monthFormat={'MM/yyyy'}
                 markedDates={markedDates}
