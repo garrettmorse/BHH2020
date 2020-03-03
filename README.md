@@ -1,5 +1,8 @@
 # Additional Suffering
 
+## Setup
+If you wish to suffer, then you need Expo, Node.js, npm, etc. Clone this bad boi and rip expo start.
+
 ## Required Suffering
 
 - Emergency contact
