@@ -1,9 +1,9 @@
 # Additional Suffering
 
 ## Setup
-If you wish to suffer, then you need Expo, Node.js, npm, etc. Clone this bad boi and rip npm ci and expo start.
+If you want to check out the app, then you need Expo, Node.js, npm, etc. Clone this bad boi and rip npm ci and expo start.
 
-## Required Suffering
+## Notable Features
 
 - Emergency contact
   - clinician
@@ -16,12 +16,8 @@ If you wish to suffer, then you need Expo, Node.js, npm, etc. Clone this bad boi
 - symptom severity scale
 - verbose text input
 
-## Suggested Suffering
+## Suggested Features
 
 - heartrate monitor
 - video call or phone option
 - some ML or something cool like that
-
-## Technical Suffering
-
-- lmao
