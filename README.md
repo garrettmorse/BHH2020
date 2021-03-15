@@ -1,4 +1,9 @@
-# Additional Suffering
+# BrainHealth Hack 2020
+
+## Team Members
+- Sam Stevens
+- Garrett Morse
+- Callista Krebs
 
 ## Setup
 If you want to check out the app, then you need Expo, Node.js, npm, etc. Clone this bad boi and rip npm ci and expo start.
